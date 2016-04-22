@@ -1,122 +1,200 @@
 package com.ml.project.mlproject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Attribute {
-	private Integer userSince, dateFirstBooking, gender, age, signupMethod, signupFlow, language, affliateChannel,
-			affliateProvider, firstAffliate, signupApp, firstDevice, firstBrowser, destinationCountry;
-	
-	public Attribute() {
-	  
-	}
+  private Object userSince, firstBookingSeason, gender, age, signupMethod, signupFlow, language, affliateChannel,
+      affliateProvider, firstAffliate, signupApp, firstDevice, firstBrowser, destinationCountry;
+  private String firstBooking;
+  private SimpleDateFormat dateFormat;
 
-	public Integer getUserSince() {
-		return userSince;
-	}
+  public Attribute() {
+    dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+  }
 
-	public void setUserSince(String userSince) {
-		this.userSince = Integer.parseInt(userSince);
-	}
+  public Object getUserSince() {
+    return userSince;
+  }
 
-	public Integer getDateFirstBooking() {
-		return dateFirstBooking;
-	}
+  public void setUserSince(String accountCreated) throws ParseException {
+    Date dateAccountCreated = dateFormat.parse(accountCreated);
+    Date dateFirstBooking = dateFormat.parse(firstBooking);
+    this.userSince = Mappings.getMonthsDifference(dateAccountCreated, dateFirstBooking);
+  }
 
-	public void setDateFirstBooking(String dateFirstBooking) {
-		this.dateFirstBooking = Integer.parseInt(dateFirstBooking);
-	}
+  public Object getFirstBookingSeason() {
+    return firstBookingSeason;
+  }
 
-	public Integer getGender() {
-		return gender;
-	}
+  public void setDateFirstBooking(String firstBooking) {
+    this.firstBooking = firstBooking;
+    this.firstBookingSeason = Mappings.getSeason(firstBooking);
+  }
 
-	public void setGender(String gender) {
-		this.gender = Integer.parseInt(gender);
-	}
+  public Object getGender() {
+    return gender;
+  }
 
-	public Integer getAge() {
-		return age;
-	}
+  public void setGender(String gender) {
 
-	public void setAge(String age) {
-		this.age = Integer.parseInt(age);
-	}
+    gender = gender.trim();
 
-	public Integer getSignupMethod() {
-		return signupMethod;
-	}
+    if (gender == null || gender.isEmpty() || gender.equalsIgnoreCase("-unknown-")) {
+      this.gender = -1;
+      return;
+    }
 
-	public void setSignupMethod(String signupMethod) {
-		this.signupMethod = Integer.parseInt(signupMethod);
-	}
+    this.gender = (gender.equalsIgnoreCase("MALE") ? 0 : 1);
+  }
 
-	public Integer getSignupFlow() {
-		return signupFlow;
-	}
+  public Object getAge() {
+    return age;
+  }
 
-	public void setSignupFlow(String signupFlow) {
-		this.signupFlow = Integer.parseInt(signupFlow);
-	}
+  public void setAge(String age) {
+    if (age == null || age.isEmpty()) {
+      this.age = 0;
+    } else {
+      this.age = Mappings.getAgeVector((int) Double.parseDouble(age.trim()));
+    }
+  }
 
-	public Integer getLanguage() {
-		return language;
-	}
+  public Object getSignupMethod() {
+    return signupMethod;
+  }
 
-	public void setLanguage(String language) {
-		this.language = Integer.parseInt(language);
-	}
+  public void setSignupMethod(String signupMethod) {
+    this.signupMethod = signupMethod;
+  }
 
-	public Integer getAffliateChannel() {
-		return affliateChannel;
-	}
+  public Object getSignupFlow() {
+    return signupFlow;
+  }
 
-	public void setAffliateChannel(String affliateChannel) {
-		this.affliateChannel = Integer.parseInt(affliateChannel);
-	}
+  public void setSignupFlow(String signupFlow) {
+    this.signupFlow = signupFlow;
+  }
 
-	public Integer getAffliateProvider() {
-		return affliateProvider;
-	}
+  public Object getLanguage() {
+    return language;
+  }
 
-	public void setAffliateProvider(String affliateProvider) {
-		this.affliateProvider = Integer.parseInt(affliateProvider);
-	}
+  public void setLanguage(String language) {
+    this.language = language;
+  }
 
-	public Integer getFirstAffliate() {
-		return firstAffliate;
-	}
+  public Object getAffliateChannel() {
+    return affliateChannel;
+  }
 
-	public void setFirstAffliate(String firstAffliate) {
-		this.firstAffliate = Integer.parseInt(firstAffliate);
-	}
+  public void setAffliateChannel(String affliateChannel) {
+    this.affliateChannel = affliateChannel;
+  }
 
-	public Integer getSignupApp() {
-		return signupApp;
-	}
+  public Object getAffliateProvider() {
+    return affliateProvider;
+  }
 
-	public void setSignupApp(String signupApp) {
-		this.signupApp = Integer.parseInt(signupApp);
-	}
+  public void setAffliateProvider(String affliateProvider) {
+    this.affliateProvider = affliateProvider;
+  }
 
-	public Integer getFirstDevice() {
-		return firstDevice;
-	}
+  public Object getFirstAffliate() {
+    return firstAffliate;
+  }
 
-	public void setFirstDevice(String firstDevice) {
-		this.firstDevice = Integer.parseInt(firstDevice);
-	}
+  public void setFirstAffliate(String firstAffliate) {
+    this.firstAffliate = firstAffliate;
+  }
 
-	public Integer getFirstBrowser() {
-		return firstBrowser;
-	}
+  public Object getSignupApp() {
+    return signupApp;
+  }
 
-	public void setFirstBrowser(String firstBrowser) {
-		this.firstBrowser = Integer.parseInt(firstBrowser);
-	}
+  public void setSignupApp(String signupApp) {
+    this.signupApp = signupApp;
+  }
 
-	public Integer getDestinationCountry() {
-		return destinationCountry;
-	}
+  public Object getFirstDevice() {
+    return firstDevice;
+  }
 
-	public void setDestinationCountry(String destinationCountry) {
-		this.destinationCountry = Integer.parseInt(destinationCountry);
-	}
+  public void setFirstDevice(String firstDevice) {
+    this.firstDevice = firstDevice;
+  }
+
+  public Object getFirstBrowser() {
+    return firstBrowser;
+  }
+
+  public void setFirstBrowser(String firstBrowser) {
+    this.firstBrowser = firstBrowser;
+  }
+
+  public Object getDestinationCountry() {
+    return destinationCountry;
+  }
+
+  public void setDestinationCountry(String destinationCountry) {
+    this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);
+  }
+
+  public Attribute process(Attribute attribute) {
+    
+    Attribute copyAttr = attribute.copy();
+    
+    copyAttr.signupMethod = Mappings.getsignupMethod(copyAttr.signupMethod.toString());
+    copyAttr.language = Mappings.getLanguage(copyAttr.language.toString());
+    copyAttr.affliateChannel = Mappings.getAffliateChannel(copyAttr.affliateChannel.toString());
+    copyAttr.affliateProvider = Mappings.getAffliateProvider(copyAttr.affliateProvider.toString());
+    copyAttr.firstAffliate = Mappings.getFirstAffliate(copyAttr.firstAffliate.toString());
+    copyAttr.signupApp = Mappings.getSignupApp(copyAttr.signupApp.toString());
+    copyAttr.firstDevice = Mappings.getFirstDevice(copyAttr.firstDevice.toString());
+    copyAttr.firstBrowser = Mappings.getFirstBrowser(copyAttr.firstBrowser.toString());
+    
+    return copyAttr;
+  }
+
+  public String[] arr() {
+    String[] result = new String[14];
+
+    result[0] = this.userSince.toString();
+    result[1] = this.firstBookingSeason.toString();
+    result[2] = this.gender.toString();
+    result[3] = this.age.toString();
+    result[4] = this.signupMethod.toString();
+    result[5] = this.signupFlow.toString();
+    result[6] = this.language.toString();
+    result[7] = this.affliateChannel.toString();
+    result[8] = this.affliateProvider.toString();
+    result[9] = this.firstAffliate.toString();
+    result[10] = this.signupApp.toString();
+    result[11] = this.firstDevice.toString();
+    result[12] = this.firstBrowser.toString();
+    result[13] = this.destinationCountry.toString();
+    return result;
+  }
+  
+  private Attribute copy() {
+    Attribute newThis = new Attribute();
+    
+    newThis.userSince = this.userSince;
+    newThis.firstBookingSeason = this.firstBookingSeason;
+    newThis.gender = this.gender;
+    newThis.age = this.age;
+    newThis.signupMethod = this.signupMethod;
+    newThis.signupFlow = this.signupFlow;
+    newThis.language = this.language;
+    newThis.affliateChannel = this.affliateChannel;
+    newThis.affliateProvider = this.affliateProvider;
+    newThis.firstAffliate = this.firstAffliate;
+    newThis.signupApp = this.signupApp;
+    newThis.firstDevice = this.firstDevice;
+    newThis.firstBrowser = this.firstBrowser;
+    newThis.destinationCountry = this.destinationCountry;
+    
+    return newThis; 
+  }
 }
