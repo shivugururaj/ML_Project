@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.opencsv.CSVWriter;
 
@@ -31,19 +29,6 @@ public class App {
     BufferedReader bf = new BufferedReader(new FileReader(csvFile));
     bf.readLine();
 
-    Map<String, String> labelMap = new HashMap<String, String>();
-    labelMap.put("US", "0");
-    labelMap.put("FR", "1");
-    labelMap.put("CA", "2");
-    labelMap.put("GB", "3");
-    labelMap.put("ES", "4");
-    labelMap.put("IT", "5");
-    labelMap.put("PT", "6");
-    labelMap.put("NL", "7");
-    labelMap.put("DE", "8");
-    labelMap.put("AU", "9");
-    labelMap.put("other", "10");
-
     while ((line = bf.readLine()) != null) {
 
       char[] ageVector = new char[20];
@@ -53,7 +38,9 @@ public class App {
       String agevalue = lineEntry[5];
       String classLable = lineEntry[15];
       String dateFirstBooked = lineEntry[3];
+      Integer dateFirstBookedSeason;
       String gender = lineEntry[4];
+      Integer genderInt;
       classLable = classLable.trim();
       dateFirstBooked = dateFirstBooked.trim();
       if (classLable.isEmpty() || dateFirstBooked.isEmpty() || classLable.equalsIgnoreCase("NDF")
@@ -65,6 +52,12 @@ public class App {
         // handling gender data
         if (gender.trim().isEmpty() || gender == null) {
           gender = "-unknown-";
+        }
+        
+        switch(gender.trim().toUpperCase()) {
+          case "MALE": genderInt = 0; break;
+          case "FEMALE": genderInt = 1; break;
+          default: genderInt = -1; break;
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,13 +72,13 @@ public class App {
         String[] firstBookedDate = dateFirstBooked.split("-");
         int bookingMonth = Integer.parseInt(firstBookedDate[1]);
         if (bookingMonth >= 1 && bookingMonth <= 4) {
-          dateFirstBooked = "Spring";
+          dateFirstBookedSeason = 0;
         } else if (bookingMonth >= 5 && bookingMonth <= 7) {
-          dateFirstBooked = "Summer";
+          dateFirstBookedSeason = 1;
         } else if (bookingMonth >= 8 && bookingMonth <= 10) {
-          dateFirstBooked = "Fall";
+          dateFirstBookedSeason = 2;
         } else {
-          dateFirstBooked = "Winter";
+          dateFirstBookedSeason = 3;
         }
 
         if (agevalue.isEmpty() || agevalue == null) {
@@ -94,7 +87,8 @@ public class App {
           lineEntry[5] = "00000000000000000000";
           lineEntry[15] = labelMap.get(classLable);
           lineEntry[3] = dateFirstBooked;
-          lineEntry[4] = gender;
+          lineEntry[4] = genderInt.toString();
+          lineEntry[3] = dateFirstBookedSeason.toString();
           lineEntry = removeColumn(lineEntry, 2);
           lineEntry = Arrays.copyOfRange(lineEntry, 1, lineEntry.length);
 
@@ -143,11 +137,11 @@ public class App {
 
     int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
     int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-    
-    if(diffMonth < 0) {
+
+    if (diffMonth < 0) {
       diffMonth = 0;
     }
-    
+
     return diffMonth;
   }
 
