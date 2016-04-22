@@ -12,9 +12,9 @@ import com.opencsv.CSVWriter;
 
 public class App {
 
-  static final String INPUT_FILE = "dataset/train_users_2.csv";
-  static final String OUTPUT_FILE = "dataset/train_users.csv";
-  static final String OUTPUT_FILE_SVM = "dataset/train_users_libsvm.csv";
+  static final String INPUT_FILE = "input/train_users_2.csv";
+  static final String OUTPUT_FILE = "output/train_users.csv";
+  static final String OUTPUT_FILE_SVM = "python/train_users_libsvm.csv";
 
   public static void main(String[] args) throws IOException, ParseException {
 
