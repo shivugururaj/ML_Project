@@ -42,11 +42,11 @@ public class Attribute {
     gender = gender.trim();
 
     if (gender == null || gender.isEmpty() || gender.equalsIgnoreCase("-unknown-")) {
-      this.gender = -1;
+      this.gender = 0;
       return;
     }
 
-    this.gender = (gender.equalsIgnoreCase("MALE") ? 0 : 1);
+    this.gender = (gender.equalsIgnoreCase("MALE") ? 1 : 2);
   }
 
   public Object getAge() {

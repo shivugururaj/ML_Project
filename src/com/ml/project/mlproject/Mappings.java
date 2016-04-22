@@ -19,17 +19,17 @@ public class Mappings {
   private static Map<String, Integer> firstBrowserMap = new HashMap<String, Integer>();
 
   public static void initialize() {
-    labelMap.put("US", 0);
-    labelMap.put("FR", 1);
-    labelMap.put("CA", 2);
-    labelMap.put("GB", 3);
-    labelMap.put("ES", 4);
-    labelMap.put("IT", 5);
-    labelMap.put("PT", 6);
-    labelMap.put("NL", 7);
-    labelMap.put("DE", 8);
-    labelMap.put("AU", 9);
-    labelMap.put("other", 10);
+    labelMap.put("US", 1);
+    labelMap.put("FR", 2);
+    labelMap.put("CA", 3);
+    labelMap.put("GB", 4);
+    labelMap.put("ES", 5);
+    labelMap.put("IT", 6);
+    labelMap.put("PT", 7);
+    labelMap.put("NL", 8);
+    labelMap.put("DE", 9);
+    labelMap.put("AU", 10);
+    labelMap.put("other", 11);
   }
 
   public static Integer getSeason(String date) {
@@ -37,13 +37,13 @@ public class Mappings {
     int bookingMonth = Integer.parseInt(firstBookedDate[1]);
 
     if (bookingMonth >= 1 && bookingMonth <= 4) {
-      return 0;
-    } else if (bookingMonth >= 5 && bookingMonth <= 7) {
       return 1;
-    } else if (bookingMonth >= 8 && bookingMonth <= 10) {
+    } else if (bookingMonth >= 5 && bookingMonth <= 7) {
       return 2;
-    } else {
+    } else if (bookingMonth >= 8 && bookingMonth <= 10) {
       return 3;
+    } else {
+      return 4;
     }
   }
 
@@ -68,7 +68,7 @@ public class Mappings {
       diffMonth = 0;
     }
 
-    return diffMonth;
+    return diffMonth + 1;
   }
 
   public static Map<String, Integer> getLabelMap() {
@@ -79,7 +79,7 @@ public class Mappings {
     if (signupMethodMap.containsKey(signupMethod)) {
       return signupMethodMap.get(signupMethod);
     } else {
-      int size = signupMethodMap.size();
+      int size = signupMethodMap.size() + 1;
       signupMethodMap.put(signupMethod, size);
       return size;
     }
@@ -89,7 +89,7 @@ public class Mappings {
     if (languageMap.containsKey(language)) {
       return languageMap.get(language);
     } else {
-      int size = languageMap.size();
+      int size = languageMap.size() + 1;
       languageMap.put(language, size);
       return size;
     }
@@ -99,7 +99,7 @@ public class Mappings {
     if (affliateChannelMap.containsKey(affliateChannel)) {
       return affliateChannelMap.get(affliateChannel);
     } else {
-      int size = affliateChannelMap.size();
+      int size = affliateChannelMap.size() + 1;
       affliateChannelMap.put(affliateChannel, size);
       return size;
     }
@@ -109,7 +109,7 @@ public class Mappings {
     if (affliateProviderMap.containsKey(affliateProvider)) {
       return affliateProviderMap.get(affliateProvider);
     } else {
-      int size = affliateProviderMap.size();
+      int size = affliateProviderMap.size() + 1;
       affliateProviderMap.put(affliateProvider, size);
       return size;
     }
@@ -119,7 +119,7 @@ public class Mappings {
     if (firstAffliateMap.containsKey(firstAffliate)) {
       return firstAffliateMap.get(firstAffliate);
     } else {
-      int size = firstAffliateMap.size();
+      int size = firstAffliateMap.size() + 1;
       firstAffliateMap.put(firstAffliate, size);
       return size;
     }
@@ -129,7 +129,7 @@ public class Mappings {
     if(signupAppMap.containsKey(signupApp)) {
       return signupAppMap.get(signupApp);
     } else {
-      int size = signupAppMap.size();
+      int size = signupAppMap.size() + 1;
       signupAppMap.put(signupApp, size);
       return size;
     }
@@ -139,7 +139,7 @@ public class Mappings {
     if(firstDeviceMap.containsKey(firstDevice)) {
       return firstDeviceMap.get(firstDevice);
     } else {
-      int size = firstDeviceMap.size();
+      int size = firstDeviceMap.size() + 1;
       firstDeviceMap.put(firstDevice, size);
       return size;
     }
@@ -149,7 +149,7 @@ public class Mappings {
     if(firstBrowserMap.containsKey(firstBrowser)) {
       return firstBrowserMap.get(firstBrowser);
     } else {
-      int size = firstBrowserMap.size();
+      int size = firstBrowserMap.size() + 1;
       firstBrowserMap.put(firstBrowser, size);
       return size;
     }
