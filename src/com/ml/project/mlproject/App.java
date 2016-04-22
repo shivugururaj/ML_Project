@@ -11,10 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.opencsv.CSVWriter;
+import au.com.bytecode.opencsv.CSVWriter;
 
 public class App {
-
 
 	static String[] removeColumn(String[] arr, int remIndex) {
 		int numElts = arr.length - (remIndex + 1);
@@ -24,8 +23,11 @@ public class App {
 
 	public static void main(String[] args) throws IOException, ParseException {
 
-		String csvFile = "dataset/train_users_2.csv";
-		CSVWriter writer = new CSVWriter(new FileWriter("dataset/train_users.csv"), ',', CSVWriter.NO_QUOTE_CHARACTER);
+		String csvFile = "/Users/shivugururaj/Documents/gdrive/spring 2016/machine learning/shivu/project/train_users_2.csv";
+		CSVWriter writer = new CSVWriter(
+				new FileWriter(
+						"/Users/shivugururaj/Documents/gdrive/spring 2016/machine learning/shivu/project/train_users.csv"),
+				',', CSVWriter.NO_QUOTE_CHARACTER);
 		String line = "";
 		BufferedReader bf = new BufferedReader(new FileReader(csvFile));
 		bf.readLine();
@@ -106,28 +108,11 @@ public class App {
 				}
 
 				if (agevalue.isEmpty() || agevalue == null) {
-					// default the age value , change the class label to number
-					// and update the training file
 					lineEntry[5] = "00000000000000000000";
-
-					lineEntry[15] = attribute.labelMap.get(classLable);
-					lineEntry[3] = dateFirstBooked;
-					lineEntry[4] = genderInt.toString();
-					lineEntry[3] = dateFirstBookedSeason.toString();
-					lineEntry = removeColumn(lineEntry, 2);
-					lineEntry = Arrays.copyOfRange(lineEntry, 1, lineEntry.length);
-
-					writer.writeNext(lineEntry);
-
 				} else {
-					// get the age value and check if its >5 or <100
 					double ageVal = Double.parseDouble((agevalue.trim()));
 					int age = (int) ageVal;
-
 					if (age > 5 || age < 100) {
-						// insert a vector value of this format
-						// 00000000000000000010 , change the classlabel to
-						// number and update the training file
 						int index = age / 5;
 						for (int i = 0; i < ageVector.length; i++) {
 							if (i == index) {
@@ -137,16 +122,15 @@ public class App {
 								ageVector[i] = '0';
 						}
 						lineEntry[5] = new String(ageVector);
-						lineEntry[15] = attribute.labelMap.get(classLable);
-						lineEntry[3] = dateFirstBooked;
-						lineEntry[4] = gender;
-						lineEntry = removeColumn(lineEntry, 2);
-						lineEntry = Arrays.copyOfRange(lineEntry, 1, lineEntry.length);
-
-						writer.writeNext(lineEntry);
-
 					}
 				}
+
+				lineEntry[15] = attribute.labelMap.get(classLable);
+				lineEntry[3] = dateFirstBookedSeason.toString();
+				lineEntry[4] = genderInt.toString();
+				lineEntry = removeColumn(lineEntry, 2);
+				lineEntry = Arrays.copyOfRange(lineEntry, 1, lineEntry.length);
+				writer.writeNext(lineEntry);
 
 			}
 
