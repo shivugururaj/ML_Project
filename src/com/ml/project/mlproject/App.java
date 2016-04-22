@@ -11,7 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.opencsv.CSVWriter;
+import au.com.bytecode.opencsv.CSVWriter;
+
 
 public class App {
 
@@ -23,17 +24,36 @@ public class App {
 
   public static void main(String[] args) throws IOException, ParseException {
 
+	  
+	  
     String csvFile = "dataset/train_users_2.csv";
     CSVWriter writer = new CSVWriter(new FileWriter("dataset/train_users.csv"), ',', CSVWriter.NO_QUOTE_CHARACTER);
     String line = "";
     BufferedReader bf = new BufferedReader(new FileReader(csvFile));
     bf.readLine();
-
+    Attribute attribute;
     while ((line = bf.readLine()) != null) {
+    	
 
       char[] ageVector = new char[20];
 
       String[] lineEntry = line.split(",");
+      attribute.setUserSince(lineEntry[1]);
+      attribute.setDateFirstBooking(lineEntry[3]);
+      attribute.setGender(lineEntry[4]);
+      attribute.setAge(lineEntry[5]);
+      attribute.setSignupMethod(lineEntry[6]);
+      attribute.setSignupFlow(lineEntry[7]);
+      attribute.setLanguage(lineEntry[8]);
+      attribute.setAffliateChannel(lineEntry[9]);
+      attribute.setAffliateProvider(lineEntry[10]);
+      attribute.setFirstAffliate(lineEntry[11]);
+      attribute.setSignupApp(lineEntry[12]);
+      attribute.setFirstDevice(lineEntry[13]);
+      attribute.setFirstBrowser(lineEntry[14]);
+      attribute.setDestinationCountry(lineEntry[15]);
+      
+      
       String dateAccountCreated = lineEntry[1];
       String agevalue = lineEntry[5];
       String classLable = lineEntry[15];
