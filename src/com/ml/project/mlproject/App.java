@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVWriter;
 
 
 public class App {
@@ -33,7 +33,6 @@ public class App {
     bf.readLine();
     Attribute attribute;
     while ((line = bf.readLine()) != null) {
-    	
 
       char[] ageVector = new char[20];
 

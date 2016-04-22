@@ -18,7 +18,7 @@ def construct_line( label, line ):
 	new_line.append( label )
 
 	for i, item in enumerate( line ):
-		if item == '' or float( item ) == 0.0:
+		if item == '':
 			continue
 		new_item = "%s:%s" % ( i + 1, item )
 		new_line.append( new_item )
@@ -33,6 +33,7 @@ output_file = sys.argv[2]
 
 try:
 	label_index = int( sys.argv[3] )
+	print label_index
 except IndexError:
 	label_index = 0
 

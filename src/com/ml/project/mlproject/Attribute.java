@@ -1,28 +1,11 @@
 package com.ml.project.mlproject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Attribute {
 	private Integer userSince, dateFirstBooking, gender, age, signupMethod, signupFlow, language, affliateChannel,
 			affliateProvider, firstAffliate, signupApp, firstDevice, firstBrowser, destinationCountry;
-
-	Map<String, String> labelMap;
-
+	
 	public Attribute() {
-		labelMap = new HashMap<String, String>();
-
-		labelMap.put("US", "0");
-		labelMap.put("FR", "1");
-		labelMap.put("CA", "2");
-		labelMap.put("GB", "3");
-		labelMap.put("ES", "4");
-		labelMap.put("IT", "5");
-		labelMap.put("PT", "6");
-		labelMap.put("NL", "7");
-		labelMap.put("DE", "8");
-		labelMap.put("AU", "9");
-		labelMap.put("other", "10");
+	  
 	}
 
 	public Integer getUserSince() {
