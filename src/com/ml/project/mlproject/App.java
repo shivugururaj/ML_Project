@@ -9,25 +9,39 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
+
+import com.ml.project.mlproject.classifiers.GradientBoosting;
 import com.ml.project.mlproject.classifiers.NaiveBayesClassifier;
 import com.opencsv.CSVWriter;
 
 public class App {
 
-  static final String INPUT_FILE = "input/train_users_2.csv";
+  static final String INPUT_FILE = "input/train_users.csv";
   static final String OUTPUT_FILE = "output/train_users.csv";
-  static final String OUTPUT_FILE_SVM = "python/train_users_libsvm.csv";
+  static final String OUTPUT_FILE_SVM = "output/train_users_libsvm.csv";
+  static final String FINAL_SVM_FILE = "output/train_users_libsvm.txt";
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    if(!new File(OUTPUT_FILE_SVM).exists()) {
+    SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
+        .set("spark.driver.allowMultipleContexts", "true");
+    JavaSparkContext jsc = new JavaSparkContext(conf);
+
+    if (new File(FINAL_SVM_FILE).exists()) {
+      System.out.println("Classifying using Naive Bayes:");
+      NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(jsc);
+      naiveBayesClassifier.classify();
+
+      System.out.println("Classifying using Gradient Boosting:");
+      GradientBoosting gradientBoosting = new GradientBoosting(jsc);
+      gradientBoosting.classify();
+    } else {
       processCsv();
     }
-    
-    NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier();
-    naiveBayesClassifier.classify();
   }
-  
+
   private static void processCsv() throws IOException, ParseException {
     CSVWriter writer = new CSVWriter(new FileWriter(OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
     CSVWriter writerSVM = new CSVWriter(new FileWriter(OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
@@ -83,6 +97,8 @@ public class App {
     bf.close();
     writer.close();
     writerSVM.close();
+
+    Mappings.writeMappings();
   }
 
 }

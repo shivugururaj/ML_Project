@@ -1,5 +1,8 @@
 package com.ml.project.mlproject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -8,6 +11,7 @@ import java.util.Map;
 
 public class Mappings {
 
+  private static final String MAPPINGS = "output/mappings.txt";
   private static Map<String, Integer> labelMap = new HashMap<String, Integer>();
   private static Map<String, Integer> signupMethodMap = new HashMap<String, Integer>();
   private static Map<String, Integer> languageMap = new HashMap<String, Integer>();
@@ -124,9 +128,9 @@ public class Mappings {
       return size;
     }
   }
-  
+
   public static Integer getSignupApp(String signupApp) {
-    if(signupAppMap.containsKey(signupApp)) {
+    if (signupAppMap.containsKey(signupApp)) {
       return signupAppMap.get(signupApp);
     } else {
       int size = signupAppMap.size() + 1;
@@ -134,9 +138,9 @@ public class Mappings {
       return size;
     }
   }
-  
+
   public static Integer getFirstDevice(String firstDevice) {
-    if(firstDeviceMap.containsKey(firstDevice)) {
+    if (firstDeviceMap.containsKey(firstDevice)) {
       return firstDeviceMap.get(firstDevice);
     } else {
       int size = firstDeviceMap.size() + 1;
@@ -144,9 +148,9 @@ public class Mappings {
       return size;
     }
   }
-  
+
   public static Integer getFirstBrowser(String firstBrowser) {
-    if(firstBrowserMap.containsKey(firstBrowser)) {
+    if (firstBrowserMap.containsKey(firstBrowser)) {
       return firstBrowserMap.get(firstBrowser);
     } else {
       int size = firstBrowserMap.size() + 1;
@@ -154,4 +158,41 @@ public class Mappings {
       return size;
     }
   }
+
+  public static void writeMappings() throws IOException {
+    FileWriter writer = new FileWriter(new File(MAPPINGS));
+    StringBuffer buffer = new StringBuffer();
+
+    buffer.append("Label Mappings:").append("\n");
+    buffer.append(labelMap.toString()).append("\n\n");
+    
+    buffer.append("Signup Method Mappings:").append("\n");
+    buffer.append(signupMethodMap.toString()).append("\n\n");
+    
+    buffer.append("Language Mappings:").append("\n");
+    buffer.append(languageMap.toString()).append("\n\n");
+    
+    buffer.append("Affliate Channe; Mappings:").append("\n");
+    buffer.append(affliateChannelMap.toString()).append("\n\n");
+    
+    buffer.append("Affliate Provider Mappings:").append("\n");
+    buffer.append(affliateProviderMap.toString()).append("\n\n");
+    
+    buffer.append("First Affliate Mappings:").append("\n");
+    buffer.append(firstAffliateMap.toString()).append("\n\n");
+    
+    buffer.append("Signup App Mappings:").append("\n");
+    buffer.append(signupAppMap.toString()).append("\n\n");
+    
+    buffer.append("First Device Mappings:").append("\n");
+    buffer.append(firstDeviceMap.toString()).append("\n\n");
+    
+    buffer.append("First Browser Mappings:").append("\n");
+    buffer.append(firstBrowserMap.toString()).append("\n\n");
+
+    writer.write(buffer.toString());
+    writer.flush();
+    writer.close();
+  }
+
 }

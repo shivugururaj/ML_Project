@@ -1,6 +1,5 @@
 package com.ml.project.mlproject.classifiers;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -13,13 +12,9 @@ import scala.Tuple2;
 
 public class NaiveBayesClassifier {
   private static final String INPUT = "output/train_users_libsvm.txt";
-  private SparkConf conf;
-  private JavaSparkContext jsc;
   JavaRDD<LabeledPoint> input;
 
-  public NaiveBayesClassifier() {
-    conf = new SparkConf().setAppName("Naive Bayes").setMaster("local");
-    jsc = new JavaSparkContext(conf);
+  public NaiveBayesClassifier(JavaSparkContext jsc) {
     input = MLUtils.loadLibSVMFile(jsc.sc(), INPUT).toJavaRDD();
   }
 

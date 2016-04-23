@@ -1,0 +1,27 @@
+Label Mappings:
+{DE=9, other=11, PT=7, AU=10, GB=4, IT=6, FR=2, US=1, CA=3, ES=5, NL=8}
+
+Signup Method Mappings:
+{facebook=2, google=3, basic=1}
+
+Language Mappings:
+{de=4, no=16, ru=10, sv=11, fi=17, ko=6, pt=9, el=23, en=1, is=22, it=8, fr=2, hu=14, es=3, zh=5, cs=19, th=20, ja=7, pl=13, da=15, nl=12, tr=18, ca=21}
+
+Affliate Channe; Mappings:
+{other=2, sem-non-brand=4, sem-brand=6, direct=1, remarketing=7, api=8, seo=3, content=5}
+
+Affliate Provider Mappings:
+{other=2, gsp=14, facebook=5, direct=1, padmapper=12, baidu=15, google=4, craigslist=3, email-marketing=9, naver=13, bing=7, yandex=16, yahoo=11, facebook-open-graph=8, vast=6, daum=17, meetup=10}
+
+First Affliate Mappings:
+{=3, marketing=7, product=6, omg=2, tracked-other=5, untracked=1, linked=4, local ops=8}
+
+Signup App Mappings:
+{Moweb=2, Web=1, iOS=3, Android=4}
+
+First Device Mappings:
+{iPhone=4, Android Phone=8, Desktop (Other)=5, Other/Unknown=3, Mac Desktop=2, SmartPhone (Other)=9, iPad=7, Android Tablet=6, Windows Desktop=1}
+
+First Browser Mappings:
+{CoolNovo=25, Maxthon=26, SlimBrowser=36, Mozilla=30, Camino=18, Apple Mail=16, CometBird=32, Safari=4, SiteKiosk=37, AOL Explorer=12, Iron=21, Yandex.Browser=40, TenFourFox=14, Silk=17, IceWeasel=27, TheWorld Browser=35, Sogou Explorer=29, Mobile Firefox=13, Chrome=3, Android Browser=9, SeaMonkey=20, Googlebot=39, IE=1, Stainless=38, Chrome Mobile=10, Opera Mini=23, Pale Moon=34, Palm Pre web browser=11, Avant Browser=33, -unknown-=5, BlackBerry Browser=19, RockMelt=7, IE Mobile=22, Kindle Browser=24, Firefox=2, wOSBrowser=28, Chromium=8, NetNewsWire=31, Opera=15, Mobile Safari=6}
+
