@@ -12,11 +12,11 @@ import org.apache.spark.mllib.util.MLUtils;
 
 import scala.Tuple2;
 
-public class GradientBoosting {
+public class RandomForestClassifier {
   private static final String INPUT = "output/train_users_libsvm.txt";
   JavaRDD<LabeledPoint> input;
 
-  public GradientBoosting(JavaSparkContext jsc) {
+  public RandomForestClassifier(JavaSparkContext jsc) {
     input = MLUtils.loadLibSVMFile(jsc.sc(), INPUT).toJavaRDD();
   }
 
