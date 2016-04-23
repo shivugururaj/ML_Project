@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 
+import com.ml.project.mlproject.classifiers.GradientBoostingClassifier;
 import com.ml.project.mlproject.classifiers.NaiveBayesClassifier;
 import com.ml.project.mlproject.classifiers.RandomForestClassifier;
 import com.opencsv.CSVWriter;
@@ -37,6 +38,11 @@ public class App {
       System.out.println("Classifying using Random Forests:");
       RandomForestClassifier randomForestClassifier = new RandomForestClassifier(jsc);
       randomForestClassifier.classify();
+
+      System.out.println("Classifying using Gradient Boosting:");
+      GradientBoostingClassifier gradientBoostingClassifier = new GradientBoostingClassifier(jsc);
+      gradientBoostingClassifier.classify();
+      
     } else {
       processCsv();
     }

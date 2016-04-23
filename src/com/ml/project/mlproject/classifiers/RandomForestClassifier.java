@@ -21,7 +21,7 @@ public class RandomForestClassifier {
   }
 
   public void classify() {
-    JavaRDD<LabeledPoint>[] splitData = input.randomSplit(new double[] { 0.9, 0.1 }, 12345);
+    JavaRDD<LabeledPoint>[] splitData = input.randomSplit(new double[] { 0.85, 0.15 }, 12345);
     JavaRDD<LabeledPoint> training = splitData[0];
     JavaRDD<LabeledPoint> validation = splitData[1];
 
