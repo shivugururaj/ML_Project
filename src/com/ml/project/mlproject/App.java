@@ -1,6 +1,7 @@
 package com.ml.project.mlproject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ml.project.mlproject.classifiers.NaiveBayesClassifier;
 import com.opencsv.CSVWriter;
 
 public class App {
@@ -18,13 +20,22 @@ public class App {
 
   public static void main(String[] args) throws IOException, ParseException {
 
+    if(!new File(OUTPUT_FILE_SVM).exists()) {
+      processCsv();
+    }
+    
+    NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier();
+    naiveBayesClassifier.classify();
+  }
+  
+  private static void processCsv() throws IOException, ParseException {
     CSVWriter writer = new CSVWriter(new FileWriter(OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
     CSVWriter writerSVM = new CSVWriter(new FileWriter(OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
-    
+
     String line;
     BufferedReader bf = new BufferedReader(new FileReader(INPUT_FILE));
     bf.readLine();
-    
+
     List<Attribute> attributesList = new ArrayList<Attribute>();
     List<Attribute> attributesListSVM = new ArrayList<Attribute>();
     Attribute attribute;
@@ -64,8 +75,8 @@ public class App {
     for (Attribute attr : attributesList) {
       writer.writeNext(attr.arr());
     }
-    
-    for(Attribute attr:attributesListSVM) {
+
+    for (Attribute attr : attributesListSVM) {
       writerSVM.writeNext(attr.arr());
     }
 

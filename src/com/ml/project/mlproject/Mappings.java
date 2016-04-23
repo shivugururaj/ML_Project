@@ -68,7 +68,7 @@ public class Mappings {
       diffMonth = 0;
     }
 
-    return diffMonth + 1;
+    return diffMonth;
   }
 
   public static Map<String, Integer> getLabelMap() {
