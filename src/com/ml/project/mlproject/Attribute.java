@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Attribute {
-  private Object userSince, firstBookingSeason, gender, age, signupMethod, signupFlow, language, affliateChannel,
+  private Object userSince, firstBookingSeason = "", gender, age, signupMethod, signupFlow, language, affliateChannel,
       affliateProvider, firstAffliate, signupApp, firstDevice, firstBrowser, destinationCountry;
   private String firstBooking;
   private SimpleDateFormat dateFormat;
@@ -18,10 +18,31 @@ public class Attribute {
     return userSince;
   }
 
-  public void setUserSince(String accountCreated) throws ParseException {
-    Date dateAccountCreated = dateFormat.parse(accountCreated);
-    Date dateFirstBooking = dateFormat.parse(firstBooking);
-    this.userSince = Mappings.getMonthsDifference(dateAccountCreated, dateFirstBooking);
+  public void setUserSince(String userSince) throws ParseException {
+    if (userSince.isEmpty() || userSince == null || firstBooking == null) {
+      this.userSince = 1;
+    } else {
+      Date dateAccountCreated = dateFormat.parse(userSince);
+      Date dateFirstBooking = dateFormat.parse(firstBooking);
+      this.userSince = Mappings.getMonthsDifference(dateAccountCreated, dateFirstBooking);
+
+    }
+
+    /*
+     * if (userSince.isEmpty() || userSince == null || firstBooking == null)
+     * { this.userSince = 1; } else { String[] monthArray =
+     * userSince.split("-"); String month = monthArray[1];
+     * 
+     * int monthVal = Integer.parseInt(month.trim());
+     * 
+     * if (monthVal >= 1 && monthVal <= 5) this.userSince = 1; else if
+     * (monthVal >= 6 && monthVal <= 7) this.userSince = 2; else if
+     * (monthVal >= 8 && monthVal <= 9) this.userSince = 3; else
+     * this.userSince = 4;
+     * 
+     * }
+     */
+
   }
 
   public Object getFirstBookingSeason() {
@@ -29,8 +50,10 @@ public class Attribute {
   }
 
   public void setDateFirstBooking(String firstBooking) {
-    this.firstBooking = firstBooking;
-    this.firstBookingSeason = Mappings.getSeason(firstBooking);
+    if (!firstBooking.isEmpty() && firstBooking != null) {
+      this.firstBooking = firstBooking;
+      this.firstBookingSeason = Mappings.getSeason(firstBooking);
+    }
   }
 
   public Object getGender() {
@@ -74,6 +97,9 @@ public class Attribute {
   }
 
   public void setSignupFlow(String signupFlow) {
+    if (signupFlow.equals("0")) {
+      this.signupFlow = 1;
+    }
     this.signupFlow = signupFlow;
   }
 
@@ -138,14 +164,19 @@ public class Attribute {
   }
 
   public void setDestinationCountry(String destinationCountry) {
-    /*this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);*/
-    this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);
+    if (destinationCountry != null)
+      this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);
+
+    /*
+     * this.destinationCountry = (destinationCountry.equalsIgnoreCase("US")
+     * ? 1 : 0);
+     */
   }
 
   public Attribute process(Attribute attribute) {
-    
+
     Attribute copyAttr = attribute.copy();
-    
+
     copyAttr.signupMethod = Mappings.getsignupMethod(copyAttr.signupMethod.toString());
     copyAttr.language = Mappings.getLanguage(copyAttr.language.toString());
     copyAttr.affliateChannel = Mappings.getAffliateChannel(copyAttr.affliateChannel.toString());
@@ -154,15 +185,22 @@ public class Attribute {
     copyAttr.signupApp = Mappings.getSignupApp(copyAttr.signupApp.toString());
     copyAttr.firstDevice = Mappings.getFirstDevice(copyAttr.firstDevice.toString());
     copyAttr.firstBrowser = Mappings.getFirstBrowser(copyAttr.firstBrowser.toString());
-    
+
     return copyAttr;
   }
 
   public String[] arr() {
-    String[] result = new String[14];
+    String[] result;
+    if (this.destinationCountry == null)
+      result = new String[13];
+    else
+      result = new String[14];
 
     result[0] = this.userSince.toString();
-    result[1] = this.firstBookingSeason.toString();
+    if (this.firstBookingSeason.equals(""))
+      result[1] = "1";
+    else
+      result[1] = this.firstBookingSeason.toString();
     result[2] = this.gender.toString();
     result[3] = this.age.toString();
     result[4] = this.signupMethod.toString();
@@ -174,13 +212,15 @@ public class Attribute {
     result[10] = this.signupApp.toString();
     result[11] = this.firstDevice.toString();
     result[12] = this.firstBrowser.toString();
-    result[13] = this.destinationCountry.toString();
+    if (this.destinationCountry != null)
+      result[13] = this.destinationCountry.toString();
+
     return result;
   }
-  
+
   private Attribute copy() {
     Attribute newThis = new Attribute();
-    
+
     newThis.userSince = this.userSince;
     newThis.firstBookingSeason = this.firstBookingSeason;
     newThis.gender = this.gender;
@@ -195,7 +235,7 @@ public class Attribute {
     newThis.firstDevice = this.firstDevice;
     newThis.firstBrowser = this.firstBrowser;
     newThis.destinationCountry = this.destinationCountry;
-    
-    return newThis; 
+
+    return newThis;
   }
 }
