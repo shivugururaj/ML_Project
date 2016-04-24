@@ -177,15 +177,15 @@ public class Attribute {
     } else {
       result = new String[14];
     }
-    
+
     result[0] = this.userSince.toString();
-    
+
     if (this.firstBookingSeason.equals("")) {
       result[1] = "1";
     } else {
       result[1] = this.firstBookingSeason.toString();
     }
-    
+
     result[2] = this.gender.toString();
     result[3] = this.age.toString();
     result[4] = this.signupMethod.toString();

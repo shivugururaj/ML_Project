@@ -2,33 +2,33 @@ Label Mappings:
 {DE=9, other=11, PT=7, AU=10, GB=4, IT=6, FR=2, US=1, CA=3, ES=5, NL=8}
 
 Signup Method Mappings:
-{facebook=2, google=3, basic=1}
-{facebook=23756, google=101, basic=65051}
+{weibo=4, facebook=2, google=3, basic=1}
+{weibo=23, facebook=38612, google=1993, basic=110376}
 
 Language Mappings:
 {en=1, non-en=2}
-{de=271, no=14, ru=111, sv=45, fi=8, ko=242, pt=63, el=7, en=86665, is=3, it=105, fr=400, hu=5, es=276, zh=522, cs=10, th=5, ja=85, pl=14, da=20, nl=36, tr=21, ca=3}
+{de=516, no=35, ru=230, fi=14, pt=145, fr=736, hu=12, id=2, ca=4, sv=99, ko=611, el=13, -unknown-=2, en=145889, is=3, it=224, es=535, zh=1524, cs=27, th=9, ja=205, pl=35, da=37, nl=73, tr=49}
 
 Affliate Channe; Mappings:
 {other=2, sem-non-brand=4, sem-brand=6, direct=1, remarketing=7, api=8, seo=3, content=5}
-{other=3600, sem-non-brand=7150, sem-brand=11094, direct=59398, remarketing=368, api=2785, seo=3955, content=558}
+{other=4186, sem-non-brand=8381, sem-brand=21488, direct=103242, remarketing=540, api=2785, seo=9654, content=728}
 
 Affliate Provider Mappings:
 {other=2, gsp=14, facebook=5, direct=1, padmapper=12, baidu=15, google=4, craigslist=3, email-marketing=9, naver=13, bing=7, yandex=16, yahoo=11, facebook-open-graph=8, vast=6, daum=17, meetup=10}
 
-{other=4664, gsp=38, facebook=793, direct=59235, padmapper=253, baidu=11, google=20780, craigslist=1617, email-marketing=38, naver=19, bing=834, yandex=5, yahoo=175, facebook-open-graph=142, vast=272, daum=2, meetup=47}
+{other=5151, gsp=40, facebook=2516, direct=103079, padmapper=321, baidu=14, google=35043, craigslist=1621, email-marketing=142, naver=33, bing=2225, yandex=6, yahoo=332, facebook-open-graph=163, vast=273, daum=4, meetup=58}
 First Affliate Mappings:
 {=3, marketing=7, product=6, omg=2, tracked-other=5, untracked=1, linked=4, local ops=8}
 
-{=1739, marketing=64, product=543, omg=16426, tracked-other=2291, untracked=47740, linked=20103, local ops=10}
+{=1759, marketing=206, product=1340, omg=27303, tracked-other=2790, untracked=81689, linked=35880, local ops=45}
 Signup App Mappings:
 {Web=1, Mobile=2}
-{Moweb=2144, Web=80022, iOS=5512, Android=1234}
+{Moweb=6400, Web=117223, iOS=21086, Android=6299}
 
 First Device Mappings:
 {iPhone=4, Android Phone=8, Desktop (Other)=5, Other/Unknown=3, Mac Desktop=2, SmartPhone (Other)=9, iPad=7, Android Tablet=6, Windows Desktop=1}
-{iPhone=6418, Android Phone=716, Desktop (Other)=551, Other/Unknown=2876, Mac Desktop=42251, SmartPhone (Other)=26, iPad=5465, Android Tablet=461, Windows Desktop=30153}
+{iPhone=25473, Android Phone=7371, Desktop (Other)=859, Other/Unknown=3376, Mac Desktop=58979, SmartPhone (Other)=141, iPad=9162, Android Tablet=1267, Windows Desktop=44385}
 
 First Browser Mappings:
 {Mozilla=3, Safari=2, Chrome=1, Other=4}
-{netnewswire=2, camino=8, mobile safari=7182, opera=65, seamonkey=5, safari=19722, pale moon=5, apple mail=16, firefox=15731, yandex.browser=2, googlebot=2, palm pre web browser=2, android browser=281, mobile firefox=14, theworld browser=3, sitekiosk=8, chrome mobile=409, wosbrowser=4, ie=7724, ie mobile=8, silk=44, chromium=44, blackberry browser=23, cometbird=2, slimbrowser=2, chrome=29878, rockmelt=13, opera mini=3, -unknown-=7619, kindle browser=2, maxthon=17, mozilla=2, aol explorer=64, stainless=2, coolnovo=4, sogou explorer=10, iron=10, iceweasel=9, tenfourfox=5, avant browser=2}
+{netnewswire=2, camino=8, mobile safari=17544, opera=105, seamonkey=6, safari=27855, pale moon=6, apple mail=25, firefox=20741, yandex.browser=5, googlebot=2, palm pre web browser=2, nintendo browser=2, ibrowse=2, android browser=1007, mobile firefox=48, theworld browser=3, sitekiosk=11, chrome mobile=2325, wosbrowser=5, ie=11400, ie mobile=90, silk=92, chromium=54, blackberry browser=59, cometbird=3, slimbrowser=2, chrome=44704, opera mobile=3, rockmelt=13, opera mini=7, -unknown-=24747, kindle browser=2, maxthon=31, mozilla=2, aol explorer=73, stainless=2, coolnovo=4, sogou explorer=20, iron=17, uc browser=2, iceweasel=10, tenfourfox=5, avant browser=2}
