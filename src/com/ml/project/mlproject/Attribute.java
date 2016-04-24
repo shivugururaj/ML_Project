@@ -138,8 +138,8 @@ public class Attribute {
   }
 
   public void setDestinationCountry(String destinationCountry) {
-    this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);
-    /*this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);*/
+    /*this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);*/
+    this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);
   }
 
   public Attribute process(Attribute attribute) {

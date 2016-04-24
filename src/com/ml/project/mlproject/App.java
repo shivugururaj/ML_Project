@@ -15,6 +15,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import com.ml.project.mlproject.classifiers.GradientBoostingClassifier;
 import com.ml.project.mlproject.classifiers.NaiveBayesClassifier;
 import com.ml.project.mlproject.classifiers.RandomForestClassifier;
+import com.ml.project.mlproject.classifiers.SVMClassifier;
 import com.opencsv.CSVWriter;
 
 public class App {
@@ -26,11 +27,10 @@ public class App {
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
-        .set("spark.driver.allowMultipleContexts", "true");
-    JavaSparkContext jsc = new JavaSparkContext(conf);
-
     if (new File(FINAL_SVM_FILE).exists()) {
+      SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
+          .set("spark.driver.allowMultipleContexts", "true");
+      JavaSparkContext jsc = new JavaSparkContext(conf);
       System.out.println("Classifying using Naive Bayes:");
       NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(jsc);
       naiveBayesClassifier.classify();
@@ -43,6 +43,10 @@ public class App {
       GradientBoostingClassifier gradientBoostingClassifier = new GradientBoostingClassifier(jsc);
       gradientBoostingClassifier.classify();
       
+      System.out.println("Classifying using SVM:");
+      SVMClassifier svmClassifier = new SVMClassifier(jsc);
+      svmClassifier.classify();
+
     } else {
       processCsv();
     }
