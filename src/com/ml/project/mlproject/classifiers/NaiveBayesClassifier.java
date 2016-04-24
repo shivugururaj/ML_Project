@@ -26,9 +26,9 @@ public class NaiveBayesClassifier {
     final NaiveBayesModel model = NaiveBayes.train(training.rdd(), 1.0);
     JavaPairRDD<Double, Double> predicationLabels = validation
         .mapToPair(arg0 -> new Tuple2<Double, Double>(model.predict(arg0.features()), arg0.label()));
-
+    
     double accuracy = predicationLabels.filter(pl -> pl._1().equals(pl._2())).count() / (double) validation.count();
-
+    
     System.out.println(accuracy);
 
   }

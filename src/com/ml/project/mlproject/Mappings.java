@@ -14,13 +14,21 @@ public class Mappings {
   private static final String MAPPINGS = "output/mappings.txt";
   private static Map<String, Integer> labelMap = new HashMap<String, Integer>();
   private static Map<String, Integer> signupMethodMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> signupMethodCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> languageMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> languageCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> affliateChannelMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> affliateChannelCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> affliateProviderMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> affliateProviderCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> firstAffliateMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> firstAffliateCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> signupAppMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> signupAppCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> firstDeviceMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> firstDeviceCountMap = new HashMap<String, Integer>();
   private static Map<String, Integer> firstBrowserMap = new HashMap<String, Integer>();
+  private static Map<String, Integer> firstBrowserCountMap = new HashMap<String, Integer>();
 
   public static void initialize() {
     labelMap.put("US", 1);
@@ -81,6 +89,8 @@ public class Mappings {
 
   public static Integer getsignupMethod(String signupMethod) {
     if (signupMethodMap.containsKey(signupMethod)) {
+      int count = signupMethodCountMap.getOrDefault(signupMethod, 1) + 1;
+      signupMethodCountMap.put(signupMethod, count);
       return signupMethodMap.get(signupMethod);
     } else {
       int size = signupMethodMap.size() + 1;
@@ -90,17 +100,22 @@ public class Mappings {
   }
 
   public static Integer getLanguage(String language) {
-    if (languageMap.containsKey(language)) {
-      return languageMap.get(language);
+
+    languageCountMap.put(language, languageCountMap.getOrDefault(language, 1) + 1);
+
+    if (language.equalsIgnoreCase("en")) {
+      languageMap.putIfAbsent("en", 1);
+      return 1;
     } else {
-      int size = languageMap.size() + 1;
-      languageMap.put(language, size);
-      return size;
+      languageMap.putIfAbsent("non-en", 2);
+      return 2;
     }
   }
 
   public static Integer getAffliateChannel(String affliateChannel) {
     if (affliateChannelMap.containsKey(affliateChannel)) {
+      int count = affliateChannelCountMap.getOrDefault(affliateChannel, 1) + 1;
+      affliateChannelCountMap.put(affliateChannel, count);
       return affliateChannelMap.get(affliateChannel);
     } else {
       int size = affliateChannelMap.size() + 1;
@@ -110,6 +125,7 @@ public class Mappings {
   }
 
   public static Integer getAffliateProvider(String affliateProvider) {
+    affliateProviderCountMap.put(affliateProvider, affliateProviderCountMap.getOrDefault(affliateProvider, 1) + 1);
     if (affliateProviderMap.containsKey(affliateProvider)) {
       return affliateProviderMap.get(affliateProvider);
     } else {
@@ -120,6 +136,9 @@ public class Mappings {
   }
 
   public static Integer getFirstAffliate(String firstAffliate) {
+
+    firstAffliateCountMap.put(firstAffliate, firstAffliateCountMap.getOrDefault(firstAffliate, 1) + 1);
+
     if (firstAffliateMap.containsKey(firstAffliate)) {
       return firstAffliateMap.get(firstAffliate);
     } else {
@@ -130,16 +149,20 @@ public class Mappings {
   }
 
   public static Integer getSignupApp(String signupApp) {
-    if (signupAppMap.containsKey(signupApp)) {
-      return signupAppMap.get(signupApp);
+    signupAppCountMap.put(signupApp, signupAppCountMap.getOrDefault(signupApp, 1) + 1);
+    if (signupApp.equalsIgnoreCase("Web")) {
+      signupAppMap.putIfAbsent("Web", 1);
+      return 1;
     } else {
-      int size = signupAppMap.size() + 1;
-      signupAppMap.put(signupApp, size);
-      return size;
+      signupAppMap.putIfAbsent("Mobile", 2);
+      return 2;
     }
   }
 
   public static Integer getFirstDevice(String firstDevice) {
+
+    firstDeviceCountMap.put(firstDevice, firstDeviceCountMap.getOrDefault(firstDevice, 1) + 1);
+
     if (firstDeviceMap.containsKey(firstDevice)) {
       return firstDeviceMap.get(firstDevice);
     } else {
@@ -150,12 +173,22 @@ public class Mappings {
   }
 
   public static Integer getFirstBrowser(String firstBrowser) {
-    if (firstBrowserMap.containsKey(firstBrowser)) {
-      return firstBrowserMap.get(firstBrowser);
+
+    firstBrowser = firstBrowser.toLowerCase();
+    firstBrowserCountMap.put(firstBrowser, firstBrowserCountMap.getOrDefault(firstBrowser, 1) + 1);
+
+    if (firstBrowser.contains("chrome")) {
+      firstBrowserMap.putIfAbsent("Chrome", 1);
+      return 1;
+    } else if (firstBrowser.contains("safari")) {
+      firstBrowserMap.putIfAbsent("Safari", 2);
+      return 2;
+    } else if (firstBrowser.contains("mozilla") || firstBrowser.contains("firefox")) {
+      firstBrowserMap.putIfAbsent("Mozilla", 3);
+      return 3;
     } else {
-      int size = firstBrowserMap.size() + 1;
-      firstBrowserMap.put(firstBrowser, size);
-      return size;
+      firstBrowserMap.putIfAbsent("Other", 4);
+      return 4;
     }
   }
 
@@ -165,30 +198,38 @@ public class Mappings {
 
     buffer.append("Label Mappings:").append("\n");
     buffer.append(labelMap.toString()).append("\n\n");
-    
+
     buffer.append("Signup Method Mappings:").append("\n");
-    buffer.append(signupMethodMap.toString()).append("\n\n");
-    
+    buffer.append(signupMethodMap.toString()).append("\n");
+    buffer.append(signupMethodCountMap.toString()).append("\n\n");
+
     buffer.append("Language Mappings:").append("\n");
-    buffer.append(languageMap.toString()).append("\n\n");
-    
+    buffer.append(languageMap.toString()).append("\n");
+    buffer.append(languageCountMap.toString()).append("\n\n");
+
     buffer.append("Affliate Channe; Mappings:").append("\n");
-    buffer.append(affliateChannelMap.toString()).append("\n\n");
-    
+    buffer.append(affliateChannelMap.toString()).append("\n");
+    buffer.append(affliateChannelCountMap.toString()).append("\n\n");
+
     buffer.append("Affliate Provider Mappings:").append("\n");
     buffer.append(affliateProviderMap.toString()).append("\n\n");
-    
+    buffer.append(affliateProviderCountMap.toString()).append("\n");
+
     buffer.append("First Affliate Mappings:").append("\n");
     buffer.append(firstAffliateMap.toString()).append("\n\n");
-    
+    buffer.append(firstAffliateCountMap.toString()).append("\n");
+
     buffer.append("Signup App Mappings:").append("\n");
-    buffer.append(signupAppMap.toString()).append("\n\n");
-    
+    buffer.append(signupAppMap.toString()).append("\n");
+    buffer.append(signupAppCountMap.toString()).append("\n\n");
+
     buffer.append("First Device Mappings:").append("\n");
-    buffer.append(firstDeviceMap.toString()).append("\n\n");
-    
+    buffer.append(firstDeviceMap.toString()).append("\n");
+    buffer.append(firstDeviceCountMap.toString()).append("\n\n");
+
     buffer.append("First Browser Mappings:").append("\n");
-    buffer.append(firstBrowserMap.toString()).append("\n\n");
+    buffer.append(firstBrowserMap.toString()).append("\n");
+    buffer.append(firstBrowserCountMap.toString()).append("\n");
 
     writer.write(buffer.toString());
     writer.flush();
