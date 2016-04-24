@@ -61,8 +61,7 @@ public class App {
     // TODO Auto-generated method stub
 
     CSVWriter testWriter = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
-    CSVWriter testWriterSVM = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE_SVM), ',',
-        CSVWriter.NO_QUOTE_CHARACTER);
+    CSVWriter testWriterSVM = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
 
     String line;
     BufferedReader bf = new BufferedReader(new FileReader(TEST_INPUT_FILE));
@@ -77,11 +76,6 @@ public class App {
 
       String[] lineEntry = line.split(",");
 
-      // String dateFirstBooking = lineEntry[3].trim();
-
-      // if (dateFirstBooking != null &&
-      // !dateFirstBooking.equalsIgnoreCase("-unknown-")
-      // && !dateFirstBooking.isEmpty()) {
       attribute.setDateFirstBooking(lineEntry[3]);
       attribute.setUserSince(lineEntry[1]);
       attribute.setGender(lineEntry[4]);
@@ -99,7 +93,6 @@ public class App {
 
       attributesList.add(attribute);
       attributesListSVM.add(attribute.process(attribute));
-      // }
     }
 
     for (Attribute attr : attributesList) {
@@ -120,8 +113,7 @@ public class App {
 
   private static void processTrainCsv() throws IOException, ParseException {
     CSVWriter trainWriter = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
-    CSVWriter trainWriterSVM = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE_SVM), ',',
-        CSVWriter.NO_QUOTE_CHARACTER);
+    CSVWriter trainWriterSVM = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
 
     String line;
     BufferedReader bf = new BufferedReader(new FileReader(TRAIN_INPUT_FILE));
