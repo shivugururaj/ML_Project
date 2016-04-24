@@ -14,7 +14,7 @@ import scala.Tuple2;
 
 public class NaiveBayesClassifier {
   private static final String INPUT = "output/train_users_libsvm.txt";
-  private static final String TEST_INPUT = "output/test_users_lubsvm.txt";
+  private static final String TEST_INPUT = "output/test_users_libsvm.txt";
   private JavaRDD<LabeledPoint> input;
   private JavaRDD<LabeledPoint> testData;
   private List<Double> predictions;
@@ -25,7 +25,7 @@ public class NaiveBayesClassifier {
   }
 
   public double classify() {
-    JavaRDD<LabeledPoint>[] splitData = input.randomSplit(new double[] { 0.85, 0.15 }, 12345);
+    JavaRDD<LabeledPoint>[] splitData = input.randomSplit(new double[] { 0.85, 0.15 }, 23423);
     JavaRDD<LabeledPoint> trainData = splitData[0];
     JavaRDD<LabeledPoint> validationData = splitData[1];
     

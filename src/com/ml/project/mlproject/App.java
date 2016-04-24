@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 
+import com.ml.project.mlproject.classifiers.DecisionTreesClassifier;
 import com.ml.project.mlproject.classifiers.GradientBoostingClassifier;
 import com.ml.project.mlproject.classifiers.NaiveBayesClassifier;
 import com.ml.project.mlproject.classifiers.RandomForestClassifier;
@@ -31,6 +32,8 @@ public class App {
 
   static final String TRAIN_FINAL_SVM_FILE = "output/train_users_libsvm.txt";
   static final String TEST_FINAL_SVM_FILE = "output/test_users_libsvm.txt";
+  
+  static final String ACCURACY_OUTPUT_FILE = "output/accuracy.txt";
 
   public static void main(String[] args) throws IOException, ParseException {
 
@@ -39,18 +42,34 @@ public class App {
       SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
           .set("spark.driver.allowMultipleContexts", "true");
       JavaSparkContext jsc = new JavaSparkContext(conf);
+      
+      StringBuffer buffer = new StringBuffer();
+      double accuracy;
+      
       System.out.println("Classifying using Naive Bayes:");
       NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(jsc);
-      naiveBayesClassifier.classify();
+      accuracy = naiveBayesClassifier.classify();
+      buffer.append("Naive Bayes Accuracy: ").append(accuracy).append("\n");
 
       System.out.println("Classifying using Random Forests:");
       RandomForestClassifier randomForestClassifier = new RandomForestClassifier(jsc);
-      randomForestClassifier.classify();
+      accuracy = randomForestClassifier.classify();
+      buffer.append("Random Forests Accuracy: ").append(accuracy).append("\n");
 
       System.out.println("Classifying using Gradient Boosting:");
       GradientBoostingClassifier gradientBoostingClassifier = new GradientBoostingClassifier(jsc);
-      gradientBoostingClassifier.classify();
+      accuracy = gradientBoostingClassifier.classify();
+      buffer.append("Gradient Boosting Accuracy: ").append(accuracy).append("\n");
 
+      DecisionTreesClassifier decisionTreesClassifier = new DecisionTreesClassifier(jsc);
+      accuracy = decisionTreesClassifier.classify();
+      buffer.append("Decision Trees Accuracy: ").append(accuracy).append("\n");
+      
+      FileWriter writer = new FileWriter(new File(ACCURACY_OUTPUT_FILE));
+      writer.write(buffer.toString());
+      writer.flush();
+      writer.close();
+      
     } else {
       processTrainCsv();
       processTestCsv();

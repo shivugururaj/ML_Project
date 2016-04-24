@@ -1,0 +1,4 @@
+Naive Bayes Accuracy: 0.6927706311592567
+Random Forests Accuracy: 0.6965992442765059
+Gradient Boosting Accuracy: 0.6965992442765059
+Decision Trees Accuracy: 0.6965992442765059
