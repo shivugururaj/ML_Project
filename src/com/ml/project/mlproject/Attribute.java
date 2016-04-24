@@ -28,21 +28,6 @@ public class Attribute {
 
     }
 
-    /*
-     * if (userSince.isEmpty() || userSince == null || firstBooking == null)
-     * { this.userSince = 1; } else { String[] monthArray =
-     * userSince.split("-"); String month = monthArray[1];
-     * 
-     * int monthVal = Integer.parseInt(month.trim());
-     * 
-     * if (monthVal >= 1 && monthVal <= 5) this.userSince = 1; else if
-     * (monthVal >= 6 && monthVal <= 7) this.userSince = 2; else if
-     * (monthVal >= 8 && monthVal <= 9) this.userSince = 3; else
-     * this.userSince = 4;
-     * 
-     * }
-     */
-
   }
 
   public Object getFirstBookingSeason() {
@@ -164,13 +149,9 @@ public class Attribute {
   }
 
   public void setDestinationCountry(String destinationCountry) {
-    if (destinationCountry != null)
-      this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);
-
-    /*
-     * this.destinationCountry = (destinationCountry.equalsIgnoreCase("US")
-     * ? 1 : 0);
-     */
+    if (destinationCountry != null) {
+      this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);
+    }
   }
 
   public Attribute process(Attribute attribute) {
@@ -191,16 +172,20 @@ public class Attribute {
 
   public String[] arr() {
     String[] result;
-    if (this.destinationCountry == null)
+    if (this.destinationCountry == null) {
       result = new String[13];
-    else
+    } else {
       result = new String[14];
-
+    }
+    
     result[0] = this.userSince.toString();
-    if (this.firstBookingSeason.equals(""))
+    
+    if (this.firstBookingSeason.equals("")) {
       result[1] = "1";
-    else
+    } else {
       result[1] = this.firstBookingSeason.toString();
+    }
+    
     result[2] = this.gender.toString();
     result[3] = this.age.toString();
     result[4] = this.signupMethod.toString();
@@ -212,8 +197,9 @@ public class Attribute {
     result[10] = this.signupApp.toString();
     result[11] = this.firstDevice.toString();
     result[12] = this.firstBrowser.toString();
-    if (this.destinationCountry != null)
+    if (this.destinationCountry != null) {
       result[13] = this.destinationCountry.toString();
+    }
 
     return result;
   }
