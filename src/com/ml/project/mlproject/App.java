@@ -22,11 +22,10 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 public class App {
 
+  public static final String TRAIN_INPUT_FILE = "input/train_users.csv";
+  public static final String TEST_INPUT_FILE = "input/test_users.csv";
 
-  static final String TRAIN_INPUT_FILE = "input/train_users.csv";
-  static final String TEST_INPUT_FILE = "input/test_users.csv";
-
-  static final String TRAIN_OUTPUT_FILE = "output/train_users.csv";
+  public static final String TRAIN_OUTPUT_FILE = "output/train_users.csv";
   static final String TEST_OUTPUT_FILE = "output/test_users.csv";
 
   static final String TRAIN_OUTPUT_FILE_SVM = "output/train_users_libsvm.csv";
@@ -35,20 +34,17 @@ public class App {
   static final String TRAIN_FINAL_SVM_FILE = "output/train_users_libsvm.txt";
   static final String TEST_FINAL_SVM_FILE = "output/test_users_libsvm.txt";
 
-  static final String ACCURACY_OUTPUT_FILE = "output/accuracy.txt";
+  public static final String OUTPUT_FILE = "output/Results.txt";
 
   public static void main(String[] args) throws IOException, ParseException {
 
-
-    File evaluationFile = new File("output/Results.txt");
-    if(evaluationFile.exists())
-    {
+    File evaluationFile = new File(OUTPUT_FILE);
+    if (evaluationFile.exists()) {
       evaluationFile.delete();
-      evaluationFile.createNewFile();
     }
-    else
-      evaluationFile.createNewFile();
-    
+
+    evaluationFile.createNewFile();
+
     if (new File(TRAIN_FINAL_SVM_FILE).exists() && new File(TEST_FINAL_SVM_FILE).exists()) {
 
       SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
@@ -56,37 +52,28 @@ public class App {
       JavaSparkContext jsc = new JavaSparkContext(conf);
 
       StringBuffer buffer = new StringBuffer();
-      double accuracy;
 
       System.out.println("Classifying using Naive Bayes:");
       NaiveBayesClassifier naiveBayesClassifier = new NaiveBayesClassifier(jsc);
-      accuracy = naiveBayesClassifier.classify();
-      buffer.append("Naive Bayes Accuracy: ").append(accuracy).append("\n");
+      naiveBayesClassifier.classify();
 
       System.out.println("Classifying using Random Forests:");
       RandomForestClassifier randomForestClassifier = new RandomForestClassifier(jsc);
-      accuracy = randomForestClassifier.classify();
-      buffer.append("Random Forests Accuracy: ").append(accuracy).append("\n");
+      randomForestClassifier.classify();
 
       System.out.println("Classifying using Gradient Boosting:");
       GradientBoostingClassifier gradientBoostingClassifier = new GradientBoostingClassifier(jsc);
-      accuracy = gradientBoostingClassifier.classify();
-      buffer.append("Gradient Boosting Accuracy: ").append(accuracy).append("\n");
+      gradientBoostingClassifier.classify();
 
-      /*DecisionTreesClassifier decisionTreesClassifier = new DecisionTreesClassifier(jsc);
-      accuracy = decisionTreesClassifier.classify();
-      buffer.append("Decision Trees Accuracy: ").append(accuracy).append("\n");*/
+      System.out.println("Classifying using Decision Tree:");
+      DecisionTreesClassifier decisionTreesClassifier = new DecisionTreesClassifier(jsc);
+      decisionTreesClassifier.classify();
 
-      /*FileWriter writer = new FileWriter(new File(ACCURACY_OUTPUT_FILE));
-      writer.write(buffer.toString());
-      writer.flush();
-      writer.close();
-*/
-      FileWriter writer = new FileWriter(("output/Results.txt"), true);
+      FileWriter writer = new FileWriter(new File(OUTPUT_FILE), true);
       BufferedWriter bufferWritter = new BufferedWriter(writer);
-          bufferWritter.write(buffer.toString());
-          bufferWritter.flush();
-          bufferWritter.close();
+      bufferWritter.write(buffer.toString());
+      bufferWritter.flush();
+      bufferWritter.close();
     } else {
       processTrainCsv();
       processTestCsv();
@@ -97,8 +84,7 @@ public class App {
     // TODO Auto-generated method stub
 
     CSVWriter testWriter = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
-    CSVWriter testWriterSVM = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE_SVM), ',',
-        CSVWriter.NO_QUOTE_CHARACTER);
+    CSVWriter testWriterSVM = new CSVWriter(new FileWriter(TEST_OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
 
     String line;
     BufferedReader bf = new BufferedReader(new FileReader(TEST_INPUT_FILE));
@@ -150,8 +136,7 @@ public class App {
 
   private static void processTrainCsv() throws IOException, ParseException {
     CSVWriter trainWriter = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE), ',', CSVWriter.NO_QUOTE_CHARACTER);
-    CSVWriter trainWriterSVM = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE_SVM), ',',
-        CSVWriter.NO_QUOTE_CHARACTER);
+    CSVWriter trainWriterSVM = new CSVWriter(new FileWriter(TRAIN_OUTPUT_FILE_SVM), ',', CSVWriter.NO_QUOTE_CHARACTER);
 
     String line;
     BufferedReader bf = new BufferedReader(new FileReader(TRAIN_INPUT_FILE));

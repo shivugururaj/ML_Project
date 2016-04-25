@@ -1,0 +1,76 @@
+Naive Bayes Overall Stats 
+Confusion matrix: 
+109.0  3865.0  
+219.0  9100.0  
+Precision = 0.6927706311592567
+Recall = 0.6927706311592567
+F1 Score = 0.6927706311592567
+Class 0.0 = 0.3323170731707317
+Class 0.0 = 0.027428283844992452
+Class 0.0 = 0.05067410506741051
+Class 1.0 = 0.7018897030466641
+Class 1.0 = 0.9764996244232214
+Class 1.0 = 0.816729492012206
+Weighted precision = 0.5914043625571617
+Weighted recall = 0.6927706311592567
+Weighted F1 score = 0.5877139118031774
+Weighted false positive rate = 0.688842722891043
+Naive Bayes Accuracy: 0.6927706311592567
+------------------------------------
+Random Forest Overall Stats 
+Confusion matrix: 
+0.0  4095.0  
+0.0  9402.0  
+Precision = 0.6965992442765059
+Recall = 0.6965992442765059
+F1 Score = 0.6965992442765059
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 1.0 = 0.6965992442765059
+Class 1.0 = 1.0
+Class 1.0 = 0.8211712301847243
+Weighted precision = 0.4852505071265991
+Weighted recall = 0.6965992442765059
+Weighted F1 score = 0.5720272583682876
+Weighted false positive rate = 0.6965992442765059
+Random Forests Accuracy: 0.6965992442765059
+------------------------------------
+Gradient Boosting Overall Stats 
+Confusion matrix: 
+0.0  4095.0  
+0.0  9402.0  
+Precision = 0.6965992442765059
+Recall = 0.6965992442765059
+F1 Score = 0.6965992442765059
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 1.0 = 0.6965992442765059
+Class 1.0 = 1.0
+Class 1.0 = 0.8211712301847243
+Weighted precision = 0.4852505071265991
+Weighted recall = 0.6965992442765059
+Weighted F1 score = 0.5720272583682876
+Weighted false positive rate = 0.6965992442765059
+Gradient Boosting Accuracy: 0.7523405617348163
+------------------------------------
+Decision Tree Overall Stats 
+Confusion matrix: 
+0.0  4095.0  
+0.0  9402.0  
+Precision = 0.6965992442765059
+Recall = 0.6965992442765059
+F1 Score = 0.6965992442765059
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 0.0 = 0.0
+Class 1.0 = 0.6965992442765059
+Class 1.0 = 1.0
+Class 1.0 = 0.8211712301847243
+Weighted precision = 0.4852505071265991
+Weighted recall = 0.6965992442765059
+Weighted F1 score = 0.5720272583682876
+Weighted false positive rate = 0.6965992442765059
+Decision Trees Accuracy: 0.6965992442765059
+------------------------------------
