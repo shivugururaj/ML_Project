@@ -1,0 +1,22 @@
+Contributions:
+
+Team of 3:
+Deeptha , Shivu , Sudharshan
+
+All team members :
+
+All the team members played equal role and equally contributed to 
+1. Understand the data set. Pre process the data set and convert it to libsvm format.
+2. Understand the Spark ML Librbaries and its usage
+3. Implement Decision tree classifier, evaluate accuracy , evaluation metrices preform predictions
+4. Discussed about future work and prepared report 
+
+Deepthas role
+1. Implement Naive Bayes classifier, evaluate accuracy , evaluation metrices preform predictions
+
+Shivus role
+1. Implement Random forest classifier, evaluate accuracy , evaluation metrices preform predictions
+
+Sudharshans role
+1. Implement Gradient Descent classifier, evaluate accuracy , evaluation metrices preform predictions
+
