@@ -17,6 +17,7 @@ import org.apache.spark.mllib.regression.LabeledPoint;
 import org.apache.spark.mllib.util.MLUtils;
 
 import com.ml.project.mlproject.App;
+import com.ml.project.mlproject.Mappings;
 
 import scala.Tuple2;
 
@@ -101,6 +102,8 @@ public class NaiveBayesClassifier {
 
     bufferWritter.flush();
     bufferWritter.close();
+    
+    Mappings.writePredictionsToCSV(predictions, "naive_bayes");
   }
 
   public List<Double> getPredictions() {

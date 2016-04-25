@@ -18,6 +18,7 @@ import org.apache.spark.mllib.tree.model.GradientBoostedTreesModel;
 import org.apache.spark.mllib.util.MLUtils;
 
 import com.ml.project.mlproject.App;
+import com.ml.project.mlproject.Mappings;
 
 import scala.Tuple2;
 
@@ -104,6 +105,7 @@ public class GradientBoostingClassifier {
     bufferWritter.flush();
     bufferWritter.close();
    
+    Mappings.writePredictionsToCSV(predictions, "gradient_boosting");
   }
 
   public List<Double> getPredictions() {

@@ -19,6 +19,7 @@ import org.apache.spark.mllib.tree.model.DecisionTreeModel;
 import org.apache.spark.mllib.util.MLUtils;
 
 import com.ml.project.mlproject.App;
+import com.ml.project.mlproject.Mappings;
 
 import scala.Tuple2;
 
@@ -40,7 +41,7 @@ public class DecisionTreesClassifier {
     JavaRDD<LabeledPoint> trainData = splitData[0];
     JavaRDD<LabeledPoint> validationData = splitData[1];
 
-    int numClasses = 2;
+    int numClasses = 12;
 
     String impurity = "gini";
     int maxDepth = 5;
@@ -108,6 +109,8 @@ public class DecisionTreesClassifier {
     bufferWritter.write(buffer.toString());
     bufferWritter.flush();
     bufferWritter.close();
+    
+    Mappings.writePredictionsToCSV(predictions, "decision_tree");
 
     return accuracy;
   }

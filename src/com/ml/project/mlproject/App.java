@@ -26,26 +26,26 @@ public class App {
   public static final String TEST_INPUT_FILE = "input/test_users.csv";
 
   public static final String TRAIN_OUTPUT_FILE = "output/train_users.csv";
-  static final String TEST_OUTPUT_FILE = "output/test_users.csv";
+  public static final String TEST_OUTPUT_FILE = "output/test_users.csv";
 
-  static final String TRAIN_OUTPUT_FILE_SVM = "output/train_users_libsvm.csv";
-  static final String TEST_OUTPUT_FILE_SVM = "output/test_users_libsvm.csv";
+  public static final String TRAIN_OUTPUT_FILE_SVM = "output/train_users_libsvm.csv";
+  public static final String TEST_OUTPUT_FILE_SVM = "output/test_users_libsvm.csv";
 
-  static final String TRAIN_FINAL_SVM_FILE = "output/train_users_libsvm.txt";
-  static final String TEST_FINAL_SVM_FILE = "output/test_users_libsvm.txt";
+  public static final String TRAIN_FINAL_SVM_FILE = "output/train_users_libsvm.txt";
+  public static final String TEST_FINAL_SVM_FILE = "output/test_users_libsvm.txt";
 
   public static final String OUTPUT_FILE = "output/Results.txt";
 
   public static void main(String[] args) throws IOException, ParseException {
 
-    File evaluationFile = new File(OUTPUT_FILE);
-    if (evaluationFile.exists()) {
-      evaluationFile.delete();
-    }
-
-    evaluationFile.createNewFile();
-
     if (new File(TRAIN_FINAL_SVM_FILE).exists() && new File(TEST_FINAL_SVM_FILE).exists()) {
+
+      File evaluationFile = new File(OUTPUT_FILE);
+      if (evaluationFile.exists()) {
+        evaluationFile.delete();
+      }
+
+      evaluationFile.createNewFile();
 
       SparkConf conf = new SparkConf().setAppName("ML Classification").setMaster("local")
           .set("spark.driver.allowMultipleContexts", "true");

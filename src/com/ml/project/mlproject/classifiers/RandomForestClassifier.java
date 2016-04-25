@@ -18,6 +18,7 @@ import org.apache.spark.mllib.tree.model.RandomForestModel;
 import org.apache.spark.mllib.util.MLUtils;
 
 import com.ml.project.mlproject.App;
+import com.ml.project.mlproject.Mappings;
 
 import scala.Tuple2;
 
@@ -109,6 +110,8 @@ public class RandomForestClassifier {
     bufferWritter.write(buffer.toString());
     bufferWritter.flush();
     bufferWritter.close();
+    
+    Mappings.writePredictionsToCSV(predictions, "random_forests");
   }
 
   public List<Double> getPredictions() {

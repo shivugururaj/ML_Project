@@ -1,17 +1,24 @@
 package com.ml.project.mlproject;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import au.com.bytecode.opencsv.CSVWriter;
 
 public class Mappings {
 
   private static final String MAPPINGS = "output/mappings.txt";
+  private static final String PREDICTIONS = "output/predictions/predictions_";
   private static Map<String, Integer> labelMap = new HashMap<String, Integer>();
   private static Map<String, Integer> signupMethodMap = new HashMap<String, Integer>();
   private static Map<String, Integer> signupMethodCountMap = new HashMap<String, Integer>();
@@ -236,4 +243,31 @@ public class Mappings {
     writer.close();
   }
 
+  public static void writePredictionsToCSV(List<Double> classLabels, String classifier) throws IOException {
+    
+    String output =  PREDICTIONS + classifier + ".csv";
+    Scanner scanner = new Scanner(new FileReader(new File(App.TEST_INPUT_FILE)));
+    CSVWriter predictionsWriter = new CSVWriter(new FileWriter(new File(output)), ',', CSVWriter.NO_QUOTE_CHARACTER);
+    List<Prediction> predictionsList = new ArrayList<Prediction>();
+    
+    scanner.nextLine();
+    
+    for(Double label:classLabels) {
+      Prediction prediction = new Prediction();
+      prediction.setId(scanner.nextLine().split(",")[0]);
+      prediction.setClassLabel(label);
+      predictionsList.add(prediction);
+    }
+
+    for(Prediction prediction:predictionsList) {
+      predictionsWriter.writeNext(prediction.arr());
+    }
+    
+    System.out.println("Final Predictions output written to "+ output);
+    
+    predictionsWriter.flush();
+    predictionsWriter.close();
+    scanner.close();
+    
+  }
 }

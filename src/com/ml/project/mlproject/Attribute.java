@@ -150,7 +150,8 @@ public class Attribute {
 
   public void setDestinationCountry(String destinationCountry) {
     if (destinationCountry != null) {
-      this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);
+      /*this.destinationCountry = (destinationCountry.equalsIgnoreCase("US") ? 1 : 0);*/
+      this.destinationCountry = Mappings.getLabelMap().get(destinationCountry);
     }
   }
 
