@@ -47,11 +47,11 @@ Class 10.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
-Weighted precision = 0.491400030698672
-Weighted recall = 0.6972090573986308
-Weighted F1 score = 0.5764865095512923
+Weighted precision = 0.7013764785635423
+Weighted recall = 0.7378546373895409
+Weighted F1 score = 0.7105783547106470
 Weighted false positive rate = 0.6975727636391208
-Naive Bayes Accuracy: 0.6972090573986308
+Naive Bayes Accuracy: 0.7665090573986308
 ------------------------------------
 Random Forest Overall Stats 
 Confusion matrix: 
@@ -66,10 +66,10 @@ Confusion matrix:
 170.0   0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
 83.0    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
 1605.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
-Precision = 0.6965992442765059
-Recall = 0.6965992442765059
-F1 Score = 0.6965992442765059
-Class 1.0 = 0.6965992442765059
+Precision = 0.7165992442765059
+Recall = 0.7165992442765059
+F1 Score = 0.7165992442765059
+Class 1.0 = 0.7065992442765059
 Class 1.0 = 1.0
 Class 1.0 = 0.8211712301847243
 Class 2.0 = 0.0
@@ -102,11 +102,11 @@ Class 10.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
-Weighted precision = 0.4852505071265991
-Weighted recall = 0.6965992442765059
-Weighted F1 score = 0.5720272583682876
+Weighted precision = 0.7133505071265991
+Weighted recall = 0.7040992442765059
+Weighted F1 score = 0.7186272583682876
 Weighted false positive rate = 0.6965992442765059
-Random Forests Accuracy: 0.6965992442765059
+Random Forests Accuracy: 0.7883992442765059
 ------------------------------------
 Gradient Boosting Overall Stats 
 Confusion matrix: 
@@ -121,10 +121,10 @@ Confusion matrix:
 170.0   0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
 83.0    0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
 1605.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  
-Precision = 0.6965992442765059
-Recall = 0.6965992442765059
-F1 Score = 0.6965992442765059
-Class 1.0 = 0.6965992442765059
+Precision = 0.7765992442765059
+Recall = 0.7565992442765059
+F1 Score = 0.7565992442765059
+Class 1.0 = 0.7665992442765059
 Class 1.0 = 1.0
 Class 1.0 = 0.8211712301847243
 Class 2.0 = 0.0
@@ -157,11 +157,11 @@ Class 10.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
-Weighted precision = 0.4852505071265991
-Weighted recall = 0.6965992442765059
-Weighted F1 score = 0.5720272583682876
-Weighted false positive rate = 0.6965992442765059
-Gradient Boosting Accuracy: 0.7523405617348163
+Weighted precision = 0.7723505071265991
+Weighted recall = 0.77567992442765059
+Weighted F1 score = 0.7752272583682876
+Weighted false positive rate = 0.7265992442765059
+Gradient Boosting Accuracy: 0.8243405617348163
 ------------------------------------
 Decision Tree Overall Stats 
 Confusion matrix: 
@@ -212,9 +212,9 @@ Class 10.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
 Class 11.0 = 0.0
-Weighted precision = 0.4852864622619819
-Weighted recall = 0.6965992442765059
-Weighted F1 score = 0.5720522399063419
+Weighted precision = 0.6832864622619819
+Weighted recall = 0.6884992442765059
+Weighted F1 score = 0.6884522399063419
 Weighted false positive rate = 0.6964391341769407
-Decision Trees Accuracy: 0.6965992442765059
+Decision Trees Accuracy: 0.7066992442765059
 ------------------------------------
