@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class Attribute {
   private Object userSince, firstBookingSeason = "", gender, age, signupMethod, signupFlow, language, affliateChannel,
       affliateProvider, firstAffliate, signupApp, firstDevice, firstBrowser, destinationCountry;
